@@ -5,7 +5,7 @@ import { HomePage, ErrorPage, Dashboard } from '../pages'
 const AppRoute = () => {
     return (
         <>
-            <main className='flex h-screen'>
+            <main>
                 <Routes>
                     {/* public routes */}
                     <Route index element={< HomePage />} />
