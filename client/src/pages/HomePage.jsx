@@ -3,6 +3,7 @@ import Header from '../components/layout/Header'
 import HeroSection from '../components/hero/HeroSection'
 import Features from '../components/hero/Features'
 import Footer from '../components/layout/Footer'
+import AuthCard from '../components/auth/AuthCard'
 
 const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ const HomePage = () => {
       <main className='pt-16'>
         <HeroSection />
         <Features />
+        <AuthCard />
       </main>
       
       <Footer />
