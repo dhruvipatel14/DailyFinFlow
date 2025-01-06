@@ -1,9 +1,16 @@
 import React from 'react'
 import { Mail, Lock, User } from 'lucide-react'
+import { useForm } from 'react-hook-form'
 
 const EmailSignupForm = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+
+  const onSubmit = (data) => {
+    console.log("data", data)
+  }
+
   return (
-    <form className='space-y-4'>
+    <form className='space-y-4' onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">
           Full Name
@@ -16,11 +23,15 @@ const EmailSignupForm = () => {
             id="name"
             name="name"
             type="text"
-            required
             className="pl-10 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             placeholder="John Doe"
+            {
+            ...register("name", { required: 'Full Name is required', maxLength: 50 })
+            }
           />
         </div>
+        {errors.name && <p className="text-red-500 text-sm mt-2">{errors.name.message}</p>}
+
       </div>
 
       <div>
@@ -36,9 +47,19 @@ const EmailSignupForm = () => {
             id='email'
             placeholder='email@example.com'
             className="pl-10 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-            required
+            {
+            ...register("email", {
+              required: 'Email is required.',
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: 'Invalid email format'
+              }
+            })
+            }
           />
+
         </div>
+        {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email.message}</p>}
       </div>
       <div>
         <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -53,11 +74,20 @@ const EmailSignupForm = () => {
             id="password"
             name="password"
             type="password"
-            required
             className="pl-10 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             placeholder="••••••••"
+            {
+            ...register("password", {
+              required: 'Password is required',
+              minLength: {
+                value: 6,
+                message: 'Password must be at least 6 characters',
+              },
+            })
+            }
           />
         </div>
+        {errors.password && <p className="text-red-500 text-sm mt-2">{errors.password.message}</p>}
       </div>
 
       <div>
@@ -73,15 +103,23 @@ const EmailSignupForm = () => {
             id="confirmPassword"
             name="confirmPassword"
             type="password"
-            required
             className="pl-10 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             placeholder="••••••••"
+            {
+            ...register("confirmPassword", {
+              required: 'Please confirm your password',
+              validate: (value) => value === watch('password') || 'Passwords do not match'
+
+            })
+            }
           />
         </div>
+        {errors.confirmPassword && <p className="text-red-500 text-sm mt-2">{errors.confirmPassword.message}</p>}
+
       </div>
 
       <button
-        type='button'
+        type='submit'
         className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white
          bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
       >
