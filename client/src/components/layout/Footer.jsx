@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2">
               <Wallet className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-bold">FinanceFlow</span>
+              <span className="text-xl font-bold">DailyFinFlow</span>
             </div>
             <p className="mt-4 text-gray-400 text-sm">
               Empowering your financial journey with smart tools and insights.
