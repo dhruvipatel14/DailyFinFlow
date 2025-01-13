@@ -5,7 +5,6 @@ const SocialAuth = () => {
     const handleGoogleLogin = () => {
 
     }
-
     return (
         <div className='space-y-3'>
             <button
@@ -14,7 +13,6 @@ const SocialAuth = () => {
                 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white
                 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
-
                 <img
                     src="https://www.google.com/favicon.ico"
                     alt="Google"
