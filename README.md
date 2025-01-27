@@ -19,7 +19,7 @@ A personalised finance assistant designed to help users manage their finances.
 
 ### Features:
 
-- [ ] OAuth Authentication and JWT Authentication
+- [x] OAuth Authentication and JWT Authentication
 - [ ] Expense Tracking and Categorization
 - [ ] Personalised Budgeting
 - [ ] Dashboard
