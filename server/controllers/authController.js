@@ -42,13 +42,14 @@ const signup = async (req, res) => {
                 password: hasedPassword
             }
         })
+        
+        const token = generateToken(newUser.id, newUser.email)
 
-        const { password: _, ...userWithOutPassword } = newUser
-
-        res.status(201).json({ message: "User created successfully", userWithOutPassword })
+        res.status(201).json({ message: "User created successfully", token })
 
     }
     catch (error) {
+        console.log(err)
         res.status(500).json({ error: "Something went wrong." });
     }
 }
