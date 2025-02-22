@@ -1,12 +1,22 @@
-import React from 'react'
+import { useContext } from 'react'
 import { Mail, Lock, User } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { AuthContext } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const EmailSignupForm = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const { signup } = useContext(AuthContext)
+  const navigate = useNavigate()
 
-  const onSubmit = (data) => {
-    console.log("data", data)
+  const onSubmit = async (data) => {
+    try {
+      await signup(data.email, data.password, data.name)
+      navigate('/dashboard')
+    }
+    catch (err) {
+      console.error('Signup failed', err)
+    }
   }
 
   return (

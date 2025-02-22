@@ -1,22 +1,20 @@
 import { useGoogleLogin } from '@react-oauth/google';
-import axios from 'axios'
-import { ENDPOINTS } from '../../config';
+import AuthContext from '../../context/AuthContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 
 const SocialAuth = () => {
+    const navigate = useNavigate()
+    const { googleLogin } = useContext(AuthContext)
 
     const handleGoogleLogin = useGoogleLogin({
 
         onSuccess: async (tokenResponse) => {
             try {
                 const access_token = tokenResponse.access_token
- 
-                const res = await axios.post(ENDPOINTS.GOOGLE_AUTH, {
-                    token: access_token
-                })
-
-                localStorage.setItem('accessToken', res.data.accessToken)
-                alert('Login sucessful')
+                await googleLogin(access_token)
+                navigate('/dashboard')
             }
             catch (error) {
                 console.log(error)
