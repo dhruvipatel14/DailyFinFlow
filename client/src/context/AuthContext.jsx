@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
                 token: access_token
             })
             const accessToken = res.data.accessToken
-            localStorage.setItem('accessToken', token)
+            localStorage.setItem('accessToken', accessToken)
             setToken(accessToken)
         }
         catch (err) {
